@@ -1,6 +1,7 @@
 import 'package:destressify/views/home_page.dart';
 import 'package:destressify/views/loading_page.dart';
 import 'package:destressify/views/login_page.dart';
+import 'package:destressify/views/welcome_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }

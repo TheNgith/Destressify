@@ -11,8 +11,12 @@ class HomePage extends StatelessWidget {
       children: [
         //coloured background part
         Container(
-          height: 300.0,
-          decoration: BoxDecoration(color: Colors.orange),
+          height: 290.0,
+          decoration: BoxDecoration(
+              color: Colors.orange,
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(50.0),
+                  bottomLeft: Radius.circular(50.0))),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,11 +94,11 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
-                    child: RoundContainerWidget(150.0, 150.0),
+                    child: RoundContainerWidget(125.0, 125.0),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5.0),
-                    child: RoundContainerWidget(150.0, 150.0),
+                    child: RoundContainerWidget(125.0, 125.0),
                   )
                 ],
               ),
@@ -106,10 +110,10 @@ class HomePage extends StatelessWidget {
                 children: [
                   Padding(
                       padding: const EdgeInsets.only(right: 5.0),
-                      child: RoundContainerWidget(150.0, 150.0)),
+                      child: RoundContainerWidget(125.0, 125.0)),
                   Padding(
                     padding: const EdgeInsets.only(left: 5.0),
-                    child: RoundContainerWidget(150.0, 150.0),
+                    child: RoundContainerWidget(125.0, 125.0),
                   )
                 ],
               ),
