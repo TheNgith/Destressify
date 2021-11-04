@@ -1,126 +1,52 @@
-import 'package:destressify/widgets/round_container_widget.dart';
+import 'package:destressify/views/menu_page.dart';
+import 'package:destressify/views/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomePage extends StatelessWidget {
-  // This widget is the root of your application.
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  static List<Widget> _widgetOptions = <Widget>[MenuPage(), ProfilePage()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        //coloured background part
-        Container(
-          height: 290.0,
-          decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(50.0),
-                  bottomLeft: Radius.circular(50.0))),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //Connected notification
-            Padding(
-              padding: const EdgeInsets.only(top: 35.0),
-              child: Container(
-                height: 20.0,
-                width: 200.0,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.green, width: 2.0),
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(left: 2.5),
-                      child: Container(
-                        height: 10.0,
-                        width: 10.0,
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(20.0)),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text('Connected to Google',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.bold)),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            //avatar
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Stack(alignment: Alignment.topCenter, children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                  child: RoundContainerWidget(300.0, 100.0),
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.red,
-                  radius: 30.0,
-                )
-              ]),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                //thông số sức khỏe
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 25.0),
-                    child: RoundContainerWidget(85.0, 125.0),
-                  ),
-                  RoundContainerWidget(85.0, 125.0),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25.0),
-                    child: RoundContainerWidget(85.0, 125.0),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: RoundContainerWidget(125.0, 125.0),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: RoundContainerWidget(125.0, 125.0),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10.0, 10, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: RoundContainerWidget(125.0, 125.0)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: RoundContainerWidget(125.0, 125.0),
-                  )
-                ],
-              ),
-            )
-          ],
-        )
-      ],
-    ));
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: TextStyle(fontFamily: 'Montserrat Bold'),
+        showUnselectedLabels: false,
+        iconSize: 25.0,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.clipboard),
+            activeIcon: FaIcon(FontAwesomeIcons.solidClipboard),
+            label: 'Menu',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.user),
+            activeIcon: FaIcon(FontAwesomeIcons.solidUser),
+            label: 'Profile',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.black87,
+        selectedIconTheme: IconThemeData(size: 30.0),
+        onTap: _onItemTapped,
+      ),
+    );
   }
 }
